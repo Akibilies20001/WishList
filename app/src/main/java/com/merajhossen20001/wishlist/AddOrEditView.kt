@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -17,9 +18,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 import androidx.navigation.NavHostController
 
@@ -32,7 +35,8 @@ fun AddOrEditView(
     Scaffold (
         topBar = { AppBarView(title =
         if (id != 0L)"Update Wish"
-        else "Add Wish")
+        else "Add Wish",
+            onBackNavClicked = {navController.navigateUp()})
         }
     ){
         Column(modifier = Modifier.padding(it)
@@ -42,14 +46,40 @@ fun AddOrEditView(
         ) {
             Spacer(Modifier.height(10.dp))
 
+            WishTextField(label = "Title",
+                value = viewModel.wishTitleState,
+                onValueChange = {viewModel.onWishTitleChanged(it)})
+
+            Spacer(Modifier.height(10.dp))
+
+            WishTextField(label = "Description",
+                value = viewModel.wishDescriptionState,
+                onValueChange = {viewModel.onWishTitleChanged(it)})
+
+            Spacer(Modifier.height(10.dp))
+            Button(onClick = {
+                if (viewModel.wishTitleState.isNotEmpty()&&
+                    viewModel.wishDescriptionState.isNotEmpty()){
+                    //TODO Update Wish
+                }else{
+                    //TODO Add Wish
+                }
+            }) {
+                Text(text = if (id != 0L)"Update Wish"
+                else "Add Wish",
+                    style = TextStyle(fontSize = 18.sp)
+                )
+
+            }
+
         }
     }
 }
 @Composable
 fun WishTextField(
     label: String,
-                  value: String,
-                  onValueChange: (String)->Unit
+    value: String,
+    onValueChange: (String)->Unit
 ) {
     OutlinedTextField(
         value = value,
