@@ -66,6 +66,7 @@ fun WishItem(wish: Wish, onclick : () -> Unit){
             Text(text = wish.title, fontWeight = FontWeight.ExtraBold)
             Text(text = wish.description)
         }
+
     }
 
 }
