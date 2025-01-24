@@ -9,6 +9,8 @@ import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 
+//Database operations
+
 @Dao
 abstract class WishDao {
 

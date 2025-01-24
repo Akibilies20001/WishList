@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
+//Structure of the table inside database
+
 @Entity(tableName = "wish-table")
 data class Wish(
     @PrimaryKey(autoGenerate = true)
