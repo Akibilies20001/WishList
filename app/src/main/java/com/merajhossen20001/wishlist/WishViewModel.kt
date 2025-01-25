@@ -12,6 +12,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
+
+// the viewmodel that is being passed to different screens to give access to logics to be used by the UIs
+
 class WishViewModel (wishRepository: WishRepository = Graph.wishRepository): ViewModel(){
     var wishTitleState by mutableStateOf("")
     var wishDescriptionState by mutableStateOf("")
@@ -23,6 +26,10 @@ class WishViewModel (wishRepository: WishRepository = Graph.wishRepository): Vie
     fun onWishDescriptionChanged(newDescription: String){
         wishDescriptionState = newDescription
     }
+
+
+
+
      lateinit var getAllWishes : Flow<List<Wish>>
 
      init {
@@ -42,12 +49,12 @@ class WishViewModel (wishRepository: WishRepository = Graph.wishRepository): Vie
     }
 
     fun updateWish(wish: Wish){
-        viewModelScope.launch {
+        viewModelScope.launch (Dispatchers.IO){
             wishRepository.updateWish(wish)
         }
     }
     fun deleteWish(wish: Wish){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             wishRepository.deleteWish(wish)
         }
     }

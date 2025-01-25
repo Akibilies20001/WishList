@@ -2,6 +2,8 @@ package com.merajhossen20001.wishlist.data
 
 import kotlinx.coroutines.flow.Flow
 
+
+// qrud functions to be used by viewmodel. avoids direct access to qrud operations in Dao class
 class WishRepository(private val wishDao: WishDao) {
     suspend fun addWish(wish: Wish){
         wishDao.addWish(wish)

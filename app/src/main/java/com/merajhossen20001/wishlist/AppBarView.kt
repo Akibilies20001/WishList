@@ -17,11 +17,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 
+
+// composable of the appbar
 @Composable
 fun AppBarView(
     title : String,
     onBackNavClicked: () -> Unit = {}
 ){
+    //back button display logic
     val navigationIcon : (@Composable ()-> Unit)? =
 
             if (!title.contains("Wish List")) {
@@ -38,6 +41,8 @@ fun AppBarView(
                 null
             }
 
+
+    // App bar using TopAppBar
     TopAppBar(
         title = {
             Text(
